@@ -27,13 +27,13 @@ namespace WebServiceDemo.Server.Service
             var client = new SOAPDemoSoapClient(basicHttpBinding, endpointAddress);
 
             //Bypass Certificate Validation in Soap
-            client.ChannelFactory.Credentials.ServiceCertificate.SslCertificateAuthentication =
-                new X509ServiceCertificateAuthentication
-                {
-                    CertificateValidationMode = X509CertificateValidationMode.None,
-                    RevocationMode = X509RevocationMode.NoCheck,
-                    TrustedStoreLocation = StoreLocation.LocalMachine
-                };
+            //client.ChannelFactory.Credentials.ServiceCertificate.SslCertificateAuthentication =
+            //    new X509ServiceCertificateAuthentication
+            //    {
+            //        CertificateValidationMode = X509CertificateValidationMode.None,
+            //        RevocationMode = X509RevocationMode.NoCheck,
+            //        TrustedStoreLocation = StoreLocation.LocalMachine
+            //    };
 
             var response = await client.LookupCityAsync(zipCode);
             return response;

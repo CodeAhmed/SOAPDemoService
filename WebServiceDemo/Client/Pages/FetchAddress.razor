@@ -1,0 +1,29 @@
+﻿@page "/address"
+@using WebServiceDemo.Shared
+@inject HttpClient Http
+
+<h1>Fetch Address</h1>  
+
+<p>This component demonstrates fetching data from the service.</p>
+
+@if (address == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>@address.City</p>
+    <p>@address.State</p>
+    <p>@address.Zip</p>     
+}
+
+@code {
+    private Address address;
+    private string zip;
+
+    protected override async Task OnInitializedAsync()
+    {
+        zip = "10001";
+        address = await Http.GetFromJsonAsync<Address>($"api/SoapService/GetAddress?zip={zip}");
+    }
+}
